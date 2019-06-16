@@ -1,0 +1,8 @@
+FROM mongo:latest
+RUN apt-get update -y; apt-get install -y  vim
+RUN mkdir -p /var/lib/mongodb /data
+COPY mongoConf/mongod_replset.conf /etc/mongod.conf
+COPY jsScript/admin.js /data/admin.js
+COPY jsScript/replica.js /data/replica.js
+copy mongo_access.key /data/mongo_access.key
+RUN chmod 400 /data/mongo_access.key 

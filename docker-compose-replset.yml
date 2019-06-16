@@ -1,0 +1,68 @@
+version: '3'
+services: 
+  mongo5:
+          hostname: mongo5
+          build:
+             context: .
+             dockerfile: dockerFiles/Dockerfile_replset
+          command: ["/usr/bin/mongod", "--config", "/etc/mongod.conf"]
+          volumes:
+             - "/tmp/mongo/dbdata_m5:/var/lib/mongodb"
+             - "/tmp/mongo/log_m5:/var/log/mongodb"
+  mongo4:
+          hostname: mongo4
+          build:
+             context: .
+             dockerfile: dockerFiles/Dockerfile_replset
+          command: ["/usr/bin/mongod", "--config", "/etc/mongod.conf"]
+          volumes:
+             - "/tmp/mongo/dbdata_m4:/var/lib/mongodb"
+             - "/tmp/mongo/log_m4:/var/log/mongodb"
+  mongo3:
+          hostname: mongo3
+          build:
+             context: .
+             dockerfile: dockerFiles/Dockerfile_replset
+          command: ["/usr/bin/mongod", "--config", "/etc/mongod.conf"]
+          volumes:
+             - "/tmp/mongo/dbdata_m3:/var/lib/mongodb"
+             - "/tmp/mongo/log_m3:/var/log/mongodb"
+  mongo2:
+          hostname: mongo2
+          build:
+             context: .
+             dockerfile: dockerFiles/Dockerfile_replset
+          command: ["/usr/bin/mongod", "--config", "/etc/mongod.conf"]
+          volumes:
+             - "/tmp/mongo/dbdata_m2:/var/lib/mongodb"
+             - "/tmp/mongo/log_m2:/var/log/mongodb"
+  mongo1:
+          hostname: mongo1
+          build:
+             context: .
+             dockerfile: dockerFiles/Dockerfile_replset 
+          command: 
+             - /bin/bash
+             - -c 
+             - |
+                  /usr/bin/mongod --fork --config /etc/mongod.conf
+                  sleep 5
+                  mongo < /data/replica.js
+                  sleep 30
+                  mongo < /data/admin.js
+                  sleep infinity
+          env_file: envFile  
+          volumes:
+             - "/tmp/mongo/dbdata_m1:/var/lib/mongodb"
+             - "/tmp/mongo/log_m1:/var/log/mongodb"
+volumes:
+        dbdata_m1:
+        log_m1:
+        dbdata_m2:
+        log_m2:
+        dbdata_m3:
+        log_m3:
+        dbdata_m4:
+        log_m4:
+        dbdata_m5:
+        log_m5:

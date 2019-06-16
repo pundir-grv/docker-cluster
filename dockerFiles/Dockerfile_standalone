@@ -1,0 +1,4 @@
+FROM mongo:latest
+RUN apt-get update -y; apt-get install -y  vim
+RUN mkdir /var/lib/mongodb
+COPY mongoConf/mongod_standalone.conf /etc/mongod.conf

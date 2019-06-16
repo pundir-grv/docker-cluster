@@ -1,0 +1,15 @@
+version: '3'
+services: 
+  mongo-1:
+          build:
+             context: ./
+             dockerfile: Dockerfile
+          command: ["/usr/bin/mongod", "--config", "/etc/mongod.conf"]
+          volumes:
+             - "/tmp/dbdata:/var/lib/mongodb"
+             - "/tmp/mongo_log:/var/log/mongodb"
+volumes:
+        dbdata:
+        mongo_log:
+
+
