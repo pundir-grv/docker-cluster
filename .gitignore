@@ -1,5 +1,4 @@
-dbdata/
-mongo_log/
+envFile
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
