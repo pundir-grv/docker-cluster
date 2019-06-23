@@ -5,16 +5,7 @@ admin.createUser(
   {
     user: "itachi",
     pwd: "amaterasu",
-    roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+    roles: [ "userAdminAnyDatabase", "dbAdminAnyDatabase", "readWriteAnyDatabase", "clusterAdmin" ]
   }
 )
-// let's authenticate to create the other user
-db.getSiblingDB("admin").auth("itachi", "amaterasu" )
-// creation of the replica set admin user
-db.getSiblingDB("admin").createUser(
-  {
-    "user" : "nagato",
-    "pwd" : "shinratensei",
-    roles: [ { "role" : "clusterAdmin", "db" : "admin" } ]
-  }
-)
+

@@ -1,0 +1,7 @@
+mongoHost:
+  - mongo1:27017
+  - mongo2:27017
+  - mongo3:27017
+replicaSet: akatsuki
+dbName: YoutubeData
+collection: videoList

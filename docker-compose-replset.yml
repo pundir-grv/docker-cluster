@@ -60,6 +60,24 @@ services:
           volumes:
              - "/tmp/mongo/dbdata_m1:/var/lib/mongodb"
              - "/tmp/mongo/log_m1:/var/log/mongodb"
+  python-app:
+          hostname: python-app
+          build:
+             context: .
+             dockerfile: dockerFiles/Dockerfile_python
+          depends_on:
+             - mongo1 
+          command:
+             - /bin/bash
+             - -c 
+             - |
+                   sleep 50
+                   cd /mongo_app
+                   /usr/local/bin/python app.py
+          env_file: envFile
+          ports:
+             - 8080:8080
+
 volumes:
         dbdata_m1:
         log_m1:

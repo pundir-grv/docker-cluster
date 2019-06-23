@@ -1,0 +1,5 @@
+FROM python:3.6.8-jessie
+RUN apt-get update -y && apt-get install -y  vim && mkdir -p /mongo_app
+COPY pythonScripts/requirments.txt /mongo_app/requirments.txt
+RUN pip install -r /mongo_app/requirments.txt
+ADD pythonScripts/ /mongo_app/
