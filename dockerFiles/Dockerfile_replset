@@ -1,4 +1,4 @@
-FROM pundirgrv1993/mongo_version1:latest
+FROM mongo:latest
 RUN apt-get update -y; apt-get install -y  vim
 RUN mkdir -p /var/lib/mongodb /data
 COPY mongoConf/mongod_replset.conf /etc/mongod.conf
