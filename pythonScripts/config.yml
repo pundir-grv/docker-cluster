@@ -5,3 +5,6 @@ mongoHost:
 replicaSet: akatsuki
 dbName: YoutubeData
 collection: videoList
+apiServiceName: youtube
+apiVersion: v3
+maxResult: 10
